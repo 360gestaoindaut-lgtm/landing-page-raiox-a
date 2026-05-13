@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raio-X ML | Descubra em 5 minutos quais dos seus anúncios estão travando seu faturamento</title>
+<meta name="description" content="A planilha com IA que conecta na sua conta do Mercado Livre, analisa todos os anúncios e mostra exatamente o que arrumar pra vender mais. R$97 à vista ou 12x R$9,90.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'navy': '#0A1838',
+          'navy-light': '#1A2950',
+          'navy-darker': '#06122B',
+          'orange': '#F08020',
+          'orange-light': '#FFA85C',
+          'orange-dark': '#D9651A',
+          'cream': '#FFF7EE',
+          'success': '#27AE60',
+          'danger': '#E74C3C',
+          'soft': '#F5F7FA',
+        },
+        fontFamily: {
+          'display': ['Plus Jakarta Sans', 'sans-serif'],
+          'body': ['Manrope', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Manrope', sans-serif; }
+  h1, h2, h3, h4, .display { font-family: 'Plus Jakarta Sans', sans-serif; }
+  
+  /* Placeholder visual com cara de imagem */
+  .placeholder {
+    background: linear-gradient(135deg, #e8edf5 0%, #d6dde8 100%);
+    border: 2px dashed #94a3b8;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  .placeholder-dark {
+    background: linear-gradient(135deg, #1a2950 0%, #0a1838 100%);
+    border: 2px dashed #F08020;
+    color: #FFA85C;
+  }
+  
+  /* CTA principal */
+  .btn-cta {
+    background: linear-gradient(135deg, #F08020 0%, #D9651A 100%);
+    color: white;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    padding: 1.25rem 2.5rem;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px -10px rgba(240, 128, 32, 0.6), 0 0 0 0 rgba(240, 128, 32, 0.4);
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    animation: pulse-glow 2.5s infinite;
+  }
+  .btn-cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 20px 40px -10px rgba(240, 128, 32, 0.7);
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 10px 30px -10px rgba(240, 128, 32, 0.6), 0 0 0 0 rgba(240, 128, 32, 0.4); }
+    50% { box-shadow: 0 10px 30px -10px rgba(240, 128, 32, 0.6), 0 0 0 12px rgba(240, 128, 32, 0); }
+  }
+  
+  /* Gradientes de fundo */
+  .bg-navy-gradient {
+    background: linear-gradient(135deg, #0A1838 0%, #1A2950 50%, #0A1838 100%);
+  }
+  .bg-navy-gradient-2 {
+    background: linear-gradient(180deg, #0A1838 0%, #06122B 100%);
+  }
+  .bg-orange-gradient {
+    background: linear-gradient(135deg, #F08020 0%, #FFA85C 100%);
+  }
+  
+  /* Decoração */
+  .glow-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+  
+  /* Highlight underline laranja */
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(240, 128, 32, 0.35) 60%);
+    padding: 0 4px;
+  }
+  
+  /* Cards 3D */
+  .card-3d {
+    transition: all 0.3s ease;
+  }
+  .card-3d:hover {
+    transform: translateY(-4px);
+  }
+  
+  /* Balão de pensamento */
+  .thought-bubble {
+    position: relative;
+    background: white;
+    border-radius: 28px;
+    padding: 1.75rem 2rem;
+    box-shadow: 0 10px 30px -8px rgba(10, 24, 56, 0.15);
+    border: 2px solid #fef3e8;
+  }
+  .thought-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -14px;
+    left: 30px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-right: 2px solid #fef3e8;
+    border-bottom: 2px solid #fef3e8;
+    transform: rotate(45deg);
+  }
+  
+  /* Animação fade-in on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Risco no preço */
+  .price-strike {
+    position: relative;
+    color: #94a3b8;
+  }
+  .price-strike::after {
+    content: '';
+    position: absolute;
+    left: -4px;
+    right: -4px;
+    top: 50%;
+    height: 2px;
+    background: #E74C3C;
+    transform: rotate(-8deg);
+  }
+  
+  /* Glow no preço final */
+  .price-final {
+    text-shadow: 0 0 40px rgba(240, 128, 32, 0.3);
+  }
+  
+  /* Tabela recap */
+  .recap-row {
+    border-bottom: 1px dashed #cbd5e1;
+  }
+  .recap-row:last-child {
+    border-bottom: none;
+  }
+  
+  /* FAQ accordion */
+  details summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  details[open] summary .arrow {
+    transform: rotate(180deg);
+  }
+  .arrow {
+    transition: transform 0.3s ease;
+  }
+  
+  /* Ribbon "BÔNUS" */
+  .ribbon {
+    position: absolute;
+    top: 16px;
+    right: -8px;
+    background: #F08020;
+    color: white;
+    padding: 6px 14px;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    border-radius: 4px 0 0 4px;
+    box-shadow: 0 4px 10px rgba(240, 128, 32, 0.4);
+  }
+  .ribbon::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -8px;
+    border-left: 8px solid #D9651A;
+    border-bottom: 8px solid transparent;
+  }
+  
+  /* Selo garantia */
+  .guarantee-seal {
+    background: radial-gradient(circle at 30% 30%, #ffffff, #f1f5f9);
+    border: 3px solid #27AE60;
+    box-shadow: 0 8px 20px -5px rgba(39, 174, 96, 0.3);
+  }
+</style>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 1 — HERO                                                -->
+<!-- ============================================================ -->
+<section class="relative bg-navy-darker overflow-hidden border-b border-white/5">
+  
+  <div class="relative max-w-6xl mx-auto px-6 pt-8 pb-4">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-orange rounded-lg flex items-center justify-center shadow-lg">
+        <span class="text-white font-extrabold text-lg">RX</span>
+      </div>
+      <span class="text-white font-display font-extrabold text-xl tracking-tight">Raio-X <span class="text-orange">ML</span></span>
+    </div>
+  </div>
+  
+  <div class="relative max-w-6xl mx-auto px-6 pt-12 pb-20 md:pb-32">
+    
+    <h1 class="display text-white text-4xl md:text-6xl font-extrabold leading-[1.1] mb-8 max-w-5xl">
+      Aumente seu faturamento <span class="text-orange">sem cadastrar</span> um único <span class="text-orange">produto novo</span>: Otimize o que você já tem analisando sua conta em tempo recorde.
+    </h1>
+    
+    <p class="text-slate-300 text-lg md:text-xl leading-relaxed mb-10 max-w-3xl">
+      A planilha com <strong class="text-white">IA</strong> que audita sua conta, revela os erros invisíveis que derrubam seu ranking e entrega o plano de ação exato para destravar suas vendas.
+    </p>
+    
+    <div class="flex flex-col md:flex-row gap-3 md:gap-6 mb-12">
+      <div class="flex items-center gap-3 text-white">
+        <div class="w-7 h-7 rounded-full bg-orange flex items-center justify-center flex-shrink-0">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <span class="font-semibold">Recupere Relevância no Algoritmo</span>
+      </div>
+      <div class="flex items-center gap-3 text-white">
+        <div class="w-7 h-7 rounded-full bg-orange flex items-center justify-center flex-shrink-0">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <span class="font-semibold">Análise em Tempo Real via API</span>
+      </div>
+    </div>
+    
+    <div class="flex flex-col items-start gap-4">
+      <a href="#cta" class="btn-cta text-lg md:text-xl px-10">
+        Quero Auditar Minha Conta Agora →
+      </a>
+      <p class="text-slate-500 text-sm flex items-center gap-2">
+        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        Acesso Imediato · Pagamento Seguro
+      </p>
+    </div>
+    
+    <div class="mt-16 md:mt-20">
+      <div class="placeholder-dark aspect-[16/9] max-w-4xl mx-auto rounded-2xl border-2 border-orange/30 flex items-center justify-center text-orange-light font-bold text-center p-8 bg-navy-light">
+        [INSIRA AQUI O MOCKUP DA PLANILHA MOSTRANDO OS ANÚNCIOS COM BAIXA PERFORMANCE]
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 2 — PROVA DE PRODUTO                                    -->
+<!-- ============================================================ -->
+<section class="bg-white py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <h2 class="display text-navy text-3xl md:text-5xl font-extrabold mb-4">
+        Veja o <span class="text-orange">Raio-X ML</span> funcionando de verdade
+      </h2>
+      <p class="text-slate-600 text-lg md:text-xl max-w-3xl mx-auto">
+        Não é promessa. É o que a planilha entrega no segundo em que você conecta na sua conta:
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+      <div class="card-3d">
+        <div class="placeholder aspect-[4/3] mb-4">IMAGEM: Print da planilha — visão geral com SCORE de cada anúncio</div>
+        <h3 class="display font-bold text-navy text-lg">Visão geral com SCORE de cada anúncio</h3>
+        <p class="text-slate-600 mt-2">Todos seus anúncios listados, ordenados pelo pior pro melhor. Você vê na hora onde tá o problema.</p>
+      </div>
+      <div class="card-3d">
+        <div class="placeholder aspect-[4/3] mb-4">IMAGEM: Print zoom em 1 anúncio — 11 exigências (algumas vermelhas, outras verdes) + AÇÃO RECOMENDADA</div>
+        <h3 class="display font-bold text-navy text-lg">11 exigências + ação recomendada por IA</h3>
+        <p class="text-slate-600 mt-2">A IA olha cada anúncio e te diz EXATAMENTE o que arrumar primeiro pra subir nas buscas.</p>
+      </div>
+      <div class="card-3d">
+        <div class="placeholder aspect-[4/3] mb-4">IMAGEM: Print do relatório de performance cruzando vendas/visitas/conversão em 7d, 15d, 30d</div>
+        <h3 class="display font-bold text-navy text-lg">Performance cruzada em 4 janelas</h3>
+        <p class="text-slate-600 mt-2">Vendas, visitas e conversão em 7, 15, 30 dias e geral. Você enxerga o que tá esfriando antes de virar problema.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 3 — AUTORIDADE                                          -->
+<!-- ============================================================ -->
+<section class="bg-navy-gradient-2 py-16 md:py-20 relative overflow-hidden">
+  <div class="glow-circle bg-orange" style="width: 400px; height: 400px; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+  
+  <div class="relative max-w-5xl mx-auto px-6 text-center">
+    <p class="text-orange-light font-semibold uppercase tracking-widest text-sm mb-4">Autoridade construída na prática</p>
+    <h2 class="display text-white text-3xl md:text-5xl font-extrabold mb-4">
+      Mais de <span class="text-orange">R$ 20 milhões</span> faturados<br class="hidden md:block">
+      por clientes em marketplaces
+    </h2>
+    <p class="text-slate-300 text-lg md:text-xl mb-10 max-w-3xl mx-auto">
+      Construído com base em mais de 10 anos auditando contas reais de Mercado Livre, Amazon e Shopee.
+    </p>
+    
+    <div class="inline-flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-6 py-4">
+      <div class="w-10 h-10 bg-orange rounded-lg flex items-center justify-center font-extrabold text-white">360</div>
+      <span class="text-white font-display font-bold text-lg">360 GESTÃO</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 4 — IDENTIFICAÇÃO DA DOR                                -->
+<!-- ============================================================ -->
+<section class="bg-white py-20 md:py-28">
+  <div class="max-w-5xl mx-auto px-6">
+    <p class="text-orange font-bold uppercase tracking-widest text-sm mb-3">Eu sei…</p>
+    <h2 class="display text-navy text-3xl md:text-5xl font-extrabold leading-tight mb-8 max-w-4xl">
+      Você tem dezenas, centenas, talvez milhares de anúncios no ar — mas <span class="highlight">não sabe quais estão te fazendo perder dinheiro</span>.
+    </h2>
+    
+    <div class="space-y-5 text-slate-700 text-lg leading-relaxed mb-12 max-w-4xl">
+      <p>Cadastrou um por um. Suou pra fazer cada ficha técnica, cada foto, cada descrição.</p>
+      <p>Mas hoje, sinceramente — você sabe quais desses anúncios estão vendendo bem e quais estão jogados às traças? Você sabe em qual deles falta vídeo curto? Em qual a ficha técnica tá incompleta? Quais estão fora do catálogo? Qual o SCORE de cada um?</p>
+      <p class="text-navy font-bold text-xl">Provavelmente não.</p>
+      <p>E aí, toda vez que você pensa em melhorar o faturamento, sua cabeça vai pro lugar errado:</p>
+    </div>
+    
+    <!-- Balões de pensamento -->
+    <div class="grid md:grid-cols-2 gap-6 md:gap-8 mt-16">
+      <div class="thought-bubble">
+        <p class="text-navy font-display font-bold text-lg md:text-xl">"Preciso cadastrar mais produtos…"</p>
+      </div>
+      <div class="thought-bubble md:translate-y-6">
+        <p class="text-navy font-display font-bold text-lg md:text-xl">"Preciso anunciar em mais marketplaces…"</p>
+      </div>
+      <div class="thought-bubble">
+        <p class="text-navy font-display font-bold text-lg md:text-xl">"Preciso baixar o preço…"</p>
+      </div>
+      <div class="thought-bubble md:translate-y-6">
+        <p class="text-navy font-display font-bold text-lg md:text-xl">"Preciso investir em mais ads…"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 5 — DIAGNÓSTICO                                         -->
+<!-- ============================================================ -->
+<section class="bg-soft py-20 md:py-28 relative overflow-hidden">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class="display text-3xl md:text-5xl font-extrabold leading-tight mb-10 max-w-4xl">
+      <span class="text-orange">O problema é que</span> você tá olhando pro <span class="underline decoration-orange decoration-4 underline-offset-4">lado errado</span>.
+    </h2>
+    
+    <div class="space-y-5 text-slate-700 text-lg md:text-xl leading-relaxed max-w-4xl">
+      <p>A maior parte do dinheiro que você tá deixando na mesa <strong class="text-navy">não está</strong> nos produtos que você AINDA não cadastrou.</p>
+      <p>Está nos anúncios que você <strong class="text-navy">JÁ tem</strong> — e que estão funcionando em 40, 50, 60 por cento da capacidade que poderiam estar.</p>
+      <p>Anúncio sem vídeo curto perde posição. Anúncio sem ficha técnica completa perde catálogo. Anúncio com fotos amadoras converte menos. Anúncio sem código universal não aparece em buscas importantes.</p>
+      <p class="text-navy font-bold">E você não sabe quais dos seus anúncios estão nessa situação. Porque revisar um por um, na mão, com o volume que você tem, é simplesmente impossível.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 6 — APRESENTAÇÃO DA SOLUÇÃO                             -->
+<!-- ============================================================ -->
+<section class="bg-white py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="text-orange font-bold uppercase tracking-widest text-sm mb-3">A solução</p>
+      <h2 class="display text-navy text-3xl md:text-5xl font-extrabold mb-6">
+        É por isso que existe o <span class="text-orange">Raio-X ML</span>.
+      </h2>
+      <p class="text-slate-600 text-xl md:text-2xl font-medium max-w-4xl mx-auto">
+        O sistema com IA que faz, em <strong class="text-navy">5 minutos</strong>, o que levaria você <strong class="text-navy">40 horas</strong> pra fazer manualmente.
+      </p>
+    </div>
+    
+    <p class="text-slate-700 text-lg leading-relaxed text-center max-w-3xl mx-auto mb-12">
+      O Raio-X ML conecta na sua conta do Mercado Livre via <strong>API oficial</strong>, puxa todos os seus anúncios, e analisa cada um deles em <strong>11 critérios oficiais do ML + performance real</strong> em janelas de 7, 15 e 30 dias.
+    </p>
+    
+    <div class="bg-soft rounded-3xl p-6 md:p-12 mb-12">
+      <p class="text-center text-navy font-display font-bold text-xl md:text-2xl mb-8">No fim, você recebe uma planilha com:</p>
+      <div class="grid md:grid-cols-2 gap-4 md:gap-6">
+        <div class="bg-white rounded-2xl p-6 flex gap-4 shadow-sm card-3d">
+          <div class="w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-navy">SCORE de qualidade</h3>
+            <p class="text-slate-600 text-sm mt-1">Nota de 0 a 100 pra cada anúncio. Você vê na hora quem tá no chão.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl p-6 flex gap-4 shadow-sm card-3d">
+          <div class="w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-navy">AÇÃO RECOMENDADA por IA</h3>
+            <p class="text-slate-600 text-sm mt-1">A IA cruza tudo e te diz exatamente o que arrumar primeiro em cada anúncio.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl p-6 flex gap-4 shadow-sm card-3d">
+          <div class="w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-navy">11 exigências do ML</h3>
+            <p class="text-slate-600 text-sm mt-1">Vídeo, ficha técnica, fotos, código universal, frete grátis e mais — tudo checado.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl p-6 flex gap-4 shadow-sm card-3d">
+          <div class="w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-navy">Performance em 4 janelas</h3>
+            <p class="text-slate-600 text-sm mt-1">Vendas, visitas e conversão em 7, 15, 30 dias e geral. O que tá esfriando, você vê.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Imagens da solução -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div class="placeholder aspect-square">IMG planilha 1</div>
+      <div class="placeholder aspect-square">IMG planilha 2</div>
+      <div class="placeholder aspect-square">IMG planilha 3</div>
+      <div class="placeholder aspect-square">IMG planilha 4</div>
+      <div class="placeholder aspect-square">IMG planilha 5</div>
+      <div class="placeholder aspect-square">IMG planilha 6</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 7 — COMO FUNCIONA EM 4 PASSOS                           -->
+<!-- ============================================================ -->
+<section class="bg-soft py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 bg-orange rounded-lg px-3 py-1.5 mb-4">
+        <span class="text-white font-display font-extrabold">RX</span>
+      </div>
+      <h2 class="display text-navy text-3xl md:text-5xl font-extrabold mb-4">
+        Em <span class="text-orange">4 passos simples</span>, seu raio-x está pronto:
+      </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-2xl p-6 shadow-md card-3d relative">
+        <div class="absolute -top-4 -left-4 w-12 h-12 bg-orange rounded-2xl flex items-center justify-center text-white font-display font-extrabold text-2xl shadow-lg">1</div>
+        <div class="placeholder aspect-video mb-5 mt-3">IMG: tela de confirmação de compra</div>
+        <h3 class="font-display font-bold text-navy text-lg mb-2">Você compra e recebe acesso imediato</h3>
+        <p class="text-slate-600 text-sm">Acesso liberado no seu e-mail em segundos após a compra.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-md card-3d relative">
+        <div class="absolute -top-4 -left-4 w-12 h-12 bg-orange rounded-2xl flex items-center justify-center text-white font-display font-extrabold text-2xl shadow-lg">2</div>
+        <div class="placeholder aspect-video mb-5 mt-3">IMG: tela de autorização do ML (OAuth)</div>
+        <h3 class="font-display font-bold text-navy text-lg mb-2">Conecta sua conta do ML em 2 cliques</h3>
+        <p class="text-slate-600 text-sm">Conexão segura via API oficial. Nada de senha, nada de dado sensível.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-md card-3d relative">
+        <div class="absolute -top-4 -left-4 w-12 h-12 bg-orange rounded-2xl flex items-center justify-center text-white font-display font-extrabold text-2xl shadow-lg">3</div>
+        <div class="placeholder aspect-video mb-5 mt-3">IMG: tela de processamento (loading da análise)</div>
+        <h3 class="font-display font-bold text-navy text-lg mb-2">A IA analisa todos os seus anúncios</h3>
+        <p class="text-slate-600 text-sm">Em até 5 minutos, todos os anúncios são analisados.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-md card-3d relative">
+        <div class="absolute -top-4 -left-4 w-12 h-12 bg-orange rounded-2xl flex items-center justify-center text-white font-display font-extrabold text-2xl shadow-lg">4</div>
+        <div class="placeholder aspect-video mb-5 mt-3">IMG: tela da planilha aberta com dados</div>
+        <h3 class="font-display font-bold text-navy text-lg mb-2">Você recebe o relatório completo</h3>
+        <p class="text-slate-600 text-sm">Abre a planilha, ordena pelo SCORE, começa pelos piores. Em 1 semana, sua conta tá outra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 8 — O QUE ESTÁ INCLUSO                                  -->
+<!-- ============================================================ -->
+<section class="bg-white py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="text-orange font-bold uppercase tracking-widest text-sm mb-3">Conteúdo principal</p>
+      <h2 class="display text-navy text-3xl md:text-5xl font-extrabold">
+        Veja tudo que você vai receber <br class="hidden md:block">dentro do <span class="text-orange">Raio-X ML</span>
+      </h2>
+    </div>
+    
+    <div class="space-y-6 md:space-y-8">
+      <!-- Item 1 -->
+      <div class="grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-soft rounded-3xl p-6 md:p-10">
+        <div class="placeholder aspect-[4/3]">IMG: mockup da Planilha Raio-X ML</div>
+        <div>
+          <span class="inline-block bg-orange/10 text-orange font-bold text-xs uppercase tracking-wider px-3 py-1.5 rounded-full mb-3">Item 1</span>
+          <h3 class="display font-extrabold text-navy text-2xl md:text-3xl mb-3">A Planilha Raio-X ML completa</h3>
+          <p class="text-slate-600 text-lg leading-relaxed">A planilha que conecta na sua conta do ML, puxa todos os seus anúncios e gera o diagnóstico completo de qualidade, exigências e performance.</p>
+        </div>
+      </div>
+      <!-- Item 2 -->
+      <div class="grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-soft rounded-3xl p-6 md:p-10">
+        <div class="md:order-2 placeholder aspect-[4/3]">IMG: símbolo de IA / coluna AÇÃO RECOMENDADA</div>
+        <div class="md:order-1">
+          <span class="inline-block bg-orange/10 text-orange font-bold text-xs uppercase tracking-wider px-3 py-1.5 rounded-full mb-3">Item 2</span>
+          <h3 class="display font-extrabold text-navy text-2xl md:text-3xl mb-3">IA Integrada de Recomendação</h3>
+          <p class="text-slate-600 text-lg leading-relaxed">A IA por trás da coluna AÇÃO RECOMENDADA. Ela cruza todos os dados do seu anúncio com as melhores práticas do ML e te diz exatamente o que fazer primeiro em cada um.</p>
+        </div>
+      </div>
+      <!-- Item 3 -->
+      <div class="grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-soft rounded-3xl p-6 md:p-10">
+        <div class="placeholder aspect-[4/3]">IMG: mockup vídeo aula 1 — como conectar</div>
+        <div>
+          <span class="inline-block bg-orange/10 text-orange font-bold text-xs uppercase tracking-wider px-3 py-1.5 rounded-full mb-3">Item 3</span>
+          <h3 class="display font-extrabold text-navy text-2xl md:text-3xl mb-3">Tutorial em vídeo de como conectar</h3>
+          <p class="text-slate-600 text-lg leading-relaxed">Tutorial filmando a tela, mostrando exatamente onde clicar pra conectar sua conta do ML na planilha. Sem erro, mesmo se você nunca mexeu com isso.</p>
+        </div>
+      </div>
+      <!-- Item 4 -->
+      <div class="grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-soft rounded-3xl p-6 md:p-10">
+        <div class="md:order-2 placeholder aspect-[4/3]">IMG: mockup vídeo aula 2 — como aplicar ações</div>
+        <div class="md:order-1">
+          <span class="inline-block bg-orange/10 text-orange font-bold text-xs uppercase tracking-wider px-3 py-1.5 rounded-full mb-3">Item 4</span>
+          <h3 class="display font-extrabold text-navy text-2xl md:text-3xl mb-3">Tutorial de como aplicar as ações</h3>
+          <p class="text-slate-600 text-lg leading-relaxed">Não basta saber o que arrumar — você precisa saber COMO arrumar. Esse tutorial te mostra na prática como aplicar cada tipo de ação no painel do ML.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 9 — BÔNUS                                               -->
+<!-- ============================================================ -->
+<section class="bg-navy-gradient-2 py-20 md:py-28 relative overflow-hidden">
+  <div class="glow-circle bg-orange" style="width: 500px; height: 500px; top: -100px; right: -100px;"></div>
+  <div class="glow-circle bg-orange-light" style="width: 400px; height: 400px; bottom: -100px; left: -100px;"></div>
+  
+  <div class="relative max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <span class="inline-block bg-orange text-white font-extrabold uppercase tracking-widest text-sm px-4 py-2 rounded-full mb-6">Ainda não acabou!</span>
+      <h2 class="display text-white text-3xl md:text-5xl font-extrabold leading-tight max-w-4xl mx-auto">
+        Comprando hoje, você ainda recebe <span class="text-orange">3 bônus</span> pra acelerar seus resultados:
+      </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+      <div class="bg-white rounded-2xl p-6 relative card-3d">
+        <div class="ribbon">BÔNUS 1</div>
+        <div class="placeholder aspect-[4/3] mb-5">IMG: capa do PDF "Prompt Universal pra Capas Premium"</div>
+        <h3 class="display font-extrabold text-navy text-xl mb-3">Prompt Universal pra Capas Premium</h3>
+        <p class="text-slate-600">O prompt exato pra gerar capas de produto profissionais usando IA, do zero, em segundos. Adeus designer. Adeus banco de imagem.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 relative card-3d md:translate-y-6">
+        <div class="ribbon">BÔNUS 2</div>
+        <div class="placeholder aspect-[4/3] mb-5">IMG: capa do PDF "Guia das 11 Exigências do ML"</div>
+        <h3 class="display font-extrabold text-navy text-xl mb-3">Guia das 11 Exigências do ML</h3>
+        <p class="text-slate-600">PDF completo destrinchando cada uma das 11 exigências oficiais do Mercado Livre. O que é, por que importa, como cumprir.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 relative card-3d">
+        <div class="ribbon">BÔNUS 3</div>
+        <div class="placeholder aspect-[4/3] mb-5">IMG: thumbnail da Aula Bônus "5 Erros que Derrubam o Ranking"</div>
+        <h3 class="display font-extrabold text-navy text-xl mb-3">Os 5 Erros que Derrubam Seu Anúncio</h3>
+        <p class="text-slate-600">Aula gravada onde eu mostro os 5 erros mais comuns (e silenciosos) que derrubam seus anúncios no ranking — e como corrigir cada um em minutos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 10 — PRA QUEM É                                         -->
+<!-- ============================================================ -->
+<section class="bg-white py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <h2 class="display text-navy text-3xl md:text-5xl font-extrabold mb-4">Pra quem é o <span class="text-orange">Raio-X ML</span></h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+      <!-- É pra você -->
+      <div class="bg-gradient-to-br from-emerald-50 to-white border-2 border-emerald-200 rounded-3xl p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 bg-success rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 class="display font-extrabold text-navy text-xl md:text-2xl">Foi feito pra você que:</h3>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex gap-3"><span class="text-success font-bold flex-shrink-0">✓</span><span class="text-slate-700">Já tem 50 ou mais anúncios no Mercado Livre</span></li>
+          <li class="flex gap-3"><span class="text-success font-bold flex-shrink-0">✓</span><span class="text-slate-700">Sente que está cadastrando muito e vendendo proporcionalmente pouco</span></li>
+          <li class="flex gap-3"><span class="text-success font-bold flex-shrink-0">✓</span><span class="text-slate-700">Quer parar de chutar e decidir baseado em dado real</span></li>
+          <li class="flex gap-3"><span class="text-success font-bold flex-shrink-0">✓</span><span class="text-slate-700">Já tentou organizar em planilha e desistiu no meio</span></li>
+          <li class="flex gap-3"><span class="text-success font-bold flex-shrink-0">✓</span><span class="text-slate-700">Está cansado de pagar consultor que entrega relatório genérico</span></li>
+          <li class="flex gap-3"><span class="text-success font-bold flex-shrink-0">✓</span><span class="text-slate-700">Quer aumentar o faturamento sem cadastrar mais nada</span></li>
+        </ul>
+      </div>
+      
+      <!-- NÃO é pra você -->
+      <div class="bg-gradient-to-br from-red-50 to-white border-2 border-red-200 rounded-3xl p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 bg-danger rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg>
+          </div>
+          <h3 class="display font-extrabold text-navy text-xl md:text-2xl">NÃO é pra você que:</h3>
+        </div>
+        <ul class="space-y-4">
+          <li class="flex gap-3"><span class="text-danger font-bold flex-shrink-0">✗</span><span class="text-slate-700">Tem menos de 20 anúncios no ML — você consegue revisar manualmente</span></li>
+          <li class="flex gap-3"><span class="text-danger font-bold flex-shrink-0">✗</span><span class="text-slate-700">Quer solução mágica sem aplicar as recomendações</span></li>
+          <li class="flex gap-3"><span class="text-danger font-bold flex-shrink-0">✗</span><span class="text-slate-700">Não tem 1h por semana pra dedicar a otimizar seus anúncios</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 11 — RECAPITULANDO                                      -->
+<!-- ============================================================ -->
+<section class="bg-soft py-20 md:py-28">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <p class="text-orange font-bold uppercase tracking-widest text-sm mb-3">RECAPITULANDO…</p>
+      <h2 class="display text-navy text-3xl md:text-5xl font-extrabold">Veja tudo que você vai receber:</h2>
+    </div>
+    
+    <div class="bg-white rounded-3xl p-6 md:p-10 shadow-xl">
+      <div class="space-y-3">
+        <div class="recap-row flex justify-between items-center py-4">
+          <span class="text-slate-700 flex items-center gap-3"><span class="text-success font-bold">✓</span> A Planilha Raio-X ML completa</span>
+          <span class="font-display font-bold text-slate-900">R$ 197,00</span>
+        </div>
+        <div class="recap-row flex justify-between items-center py-4">
+          <span class="text-slate-700 flex items-center gap-3"><span class="text-success font-bold">✓</span> IA Integrada de Recomendação</span>
+          <span class="font-display font-bold text-slate-900">R$ 147,00</span>
+        </div>
+        <div class="recap-row flex justify-between items-center py-4">
+          <span class="text-slate-700 flex items-center gap-3"><span class="text-success font-bold">✓</span> Tutorial de Como Conectar</span>
+          <span class="font-display font-bold text-slate-900">R$ 67,00</span>
+        </div>
+        <div class="recap-row flex justify-between items-center py-4">
+          <span class="text-slate-700 flex items-center gap-3"><span class="text-success font-bold">✓</span> Tutorial de Como Aplicar as Ações</span>
+          <span class="font-display font-bold text-slate-900">R$ 97,00</span>
+        </div>
+        <div class="recap-row flex justify-between items-center py-4">
+          <span class="text-slate-700 flex items-center gap-3"><span class="text-orange font-bold">★</span> BÔNUS 1: Prompt pra Capas Premium</span>
+          <span class="font-display font-bold text-slate-900">R$ 47,00</span>
+        </div>
+        <div class="recap-row flex justify-between items-center py-4">
+          <span class="text-slate-700 flex items-center gap-3"><span class="text-orange font-bold">★</span> BÔNUS 2: Guia das 11 Exigências</span>
+          <span class="font-display font-bold text-slate-900">R$ 67,00</span>
+        </div>
+        <div class="recap-row flex justify-between items-center py-4">
+          <span class="text-slate-700 flex items-center gap-3"><span class="text-orange font-bold">★</span> BÔNUS 3: Aula 5 Erros que Derrubam o Ranking</span>
+          <span class="font-display font-bold text-slate-900">R$ 97,00</span>
+        </div>
+      </div>
+      
+      <div class="mt-8 pt-8 border-t-2 border-dashed border-slate-300 text-center">
+        <p class="text-slate-600 font-medium mb-2">Tudo isso deveria custar:</p>
+        <p class="display text-orange font-extrabold text-3xl md:text-4xl">R$ 719,00</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 12 — OFERTA E PREÇO                                     -->
+<!-- ============================================================ -->
+<section id="cta" class="bg-orange-gradient py-20 md:py-28 relative overflow-hidden">
+  <div class="glow-circle bg-white" style="width: 600px; height: 600px; top: -100px; left: 50%; transform: translateX(-50%); opacity: 0.15;"></div>
+  
+  <div class="relative max-w-3xl mx-auto px-6">
+    <div class="text-center mb-8">
+      <p class="text-white font-bold uppercase tracking-widest text-sm mb-3">Mas hoje você tem acesso por apenas:</p>
+    </div>
+    
+    <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl text-center">
+      <!-- Mockup -->
+      <div class="placeholder aspect-[4/3] max-w-sm mx-auto mb-6">IMG: mockup do produto (notebook + tablet com a planilha)</div>
+      
+      <!-- Logo do produto -->
+      <div class="inline-flex items-center gap-2 mb-6">
+        <div class="w-8 h-8 bg-orange rounded-md flex items-center justify-center">
+          <span class="text-white font-extrabold text-sm">RX</span>
+        </div>
+        <span class="text-navy font-display font-extrabold text-lg">Raio-X ML</span>
+      </div>
+      
+      <p class="text-slate-500 mb-2">De <span class="price-strike font-display font-bold">R$ 719,00</span> por:</p>
+      
+      <p class="display font-extrabold text-navy text-2xl md:text-3xl mb-1">12x de</p>
+      <p class="display font-extrabold text-orange text-6xl md:text-8xl mb-2 price-final">R$ 9,90</p>
+      <p class="text-slate-600 text-lg mb-8">ou <strong class="text-navy text-xl">R$ 97,00 à vista</strong></p>
+      
+      <a href="#" id="kiwify-link" class="btn-cta text-base md:text-lg w-full md:w-auto block md:inline-block">
+        Quero comprar agora →
+      </a>
+      
+      <!-- Selo de garantia -->
+      <div class="mt-10 flex flex-col items-center">
+        <div class="guarantee-seal w-24 h-24 rounded-full flex items-center justify-center mb-4">
+          <div class="text-center">
+            <div class="text-success font-display font-extrabold text-2xl leading-none">7</div>
+            <div class="text-success font-bold text-[10px] uppercase tracking-wider">DIAS</div>
+          </div>
+        </div>
+        <p class="font-display font-bold text-navy text-lg">Garantia incondicional</p>
+        <p class="text-slate-600 text-sm">Não gostou? Devolvemos 100% do seu dinheiro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 13 — DUAS OPÇÕES                                        -->
+<!-- ============================================================ -->
+<section class="bg-white py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <h2 class="display text-navy text-3xl md:text-5xl font-extrabold">Agora, você tem <span class="text-orange">duas opções:</span></h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+      <!-- Opção 1 -->
+      <div class="bg-slate-100 rounded-3xl p-8 border-2 border-slate-200">
+        <p class="text-slate-500 font-bold uppercase tracking-widest text-sm mb-2">Opção 1</p>
+        <h3 class="display font-extrabold text-slate-700 text-2xl mb-6">Sem o Raio-X ML</h3>
+        <ul class="space-y-4">
+          <li class="flex gap-3 text-slate-600"><span class="flex-shrink-0">👉</span><span>Continuar achando que precisa cadastrar mais produtos</span></li>
+          <li class="flex gap-3 text-slate-600"><span class="flex-shrink-0">👉</span><span>Continuar sem saber quais anúncios estão travados</span></li>
+          <li class="flex gap-3 text-slate-600"><span class="flex-shrink-0">👉</span><span>Continuar deixando dinheiro na mesa todo dia</span></li>
+        </ul>
+      </div>
+      <!-- Opção 2 -->
+      <div class="bg-gradient-to-br from-orange-light/20 to-orange/10 rounded-3xl p-8 border-2 border-orange">
+        <p class="text-orange font-bold uppercase tracking-widest text-sm mb-2">Opção 2</p>
+        <h3 class="display font-extrabold text-navy text-2xl mb-6">Com o Raio-X ML</h3>
+        <ul class="space-y-4">
+          <li class="flex gap-3 text-slate-700"><span class="text-success font-bold flex-shrink-0">✓</span><span>Em 5 minutos, ter o raio-x completo da sua conta</span></li>
+          <li class="flex gap-3 text-slate-700"><span class="text-success font-bold flex-shrink-0">✓</span><span>Saber exatamente quais anúncios arrumar primeiro</span></li>
+          <li class="flex gap-3 text-slate-700"><span class="text-success font-bold flex-shrink-0">✓</span><span>Ver seu faturamento crescer sem cadastrar nada novo</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 14 — QUEM SOU EU                                        -->
+<!-- ============================================================ -->
+<section class="bg-navy-gradient py-20 md:py-28 relative overflow-hidden">
+  <div class="glow-circle bg-orange" style="width: 500px; height: 500px; top: 10%; right: -100px;"></div>
+  
+  <div class="relative max-w-5xl mx-auto px-6">
+    <div class="grid md:grid-cols-5 gap-8 md:gap-12 items-center">
+      <div class="md:col-span-2 flex justify-center">
+        <div class="placeholder aspect-square w-64 md:w-full max-w-xs rounded-full overflow-hidden">FOTO PROFISSIONAL DO GABRIEL</div>
+      </div>
+      <div class="md:col-span-3">
+        <p class="text-orange font-bold uppercase tracking-widest text-sm mb-3">Quem sou eu</p>
+        <h2 class="display text-white text-3xl md:text-4xl font-extrabold mb-6">
+          Gabriel é o criador do <span class="text-orange">Raio-X ML</span>
+        </h2>
+        <div class="space-y-4 text-slate-300 text-lg leading-relaxed">
+          <p>Sou Gabriel, fundador da <strong class="text-white">360 Gestão</strong>.</p>
+          <p>Há 10 anos no e-commerce, montei operações do zero pra grandes distribuidoras de autopeças, levei contas <strong class="text-white">do vermelho ao Mercado Líder Gold</strong>, e meus clientes já faturaram mais de <strong class="text-orange">R$ 20 milhões</strong> em marketplaces como Mercado Livre, Amazon e Shopee.</p>
+          <p>MBA em Gestão de Varejo e E-commerce.</p>
+          <p class="text-white font-medium">Construí o Raio-X ML porque cansei de ver vendedor bom perdendo dinheiro em anúncio mal cuidado. Não é falta de competência. É falta de visibilidade. Você não consegue arrumar o que não enxerga.</p>
+          <p class="text-orange-light font-bold text-xl">Agora, com o Raio-X ML, você enxerga tudo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 15 — CTA FINAL                                          -->
+<!-- ============================================================ -->
+<section class="bg-orange-gradient py-20 md:py-28 relative overflow-hidden">
+  <div class="glow-circle bg-white" style="width: 600px; height: 600px; top: -100px; left: 50%; transform: translateX(-50%); opacity: 0.15;"></div>
+  
+  <div class="relative max-w-3xl mx-auto px-6">
+    <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl text-center">
+      <div class="inline-flex items-center gap-2 mb-6">
+        <div class="w-8 h-8 bg-orange rounded-md flex items-center justify-center">
+          <span class="text-white font-extrabold text-sm">RX</span>
+        </div>
+        <span class="text-navy font-display font-extrabold text-lg">Raio-X ML</span>
+      </div>
+      
+      <p class="text-slate-500 mb-2">De <span class="price-strike font-display font-bold">R$ 719,00</span> por:</p>
+      
+      <p class="display font-extrabold text-navy text-2xl md:text-3xl mb-1">12x de</p>
+      <p class="display font-extrabold text-orange text-6xl md:text-8xl mb-2 price-final">R$ 9,90</p>
+      <p class="text-slate-600 text-lg mb-8">ou <strong class="text-navy text-xl">R$ 97,00 à vista</strong></p>
+      
+      <a href="#" class="btn-cta text-base md:text-lg w-full md:w-auto block md:inline-block">
+        Quero comprar agora →
+      </a>
+      
+      <div class="mt-10 flex flex-col items-center">
+        <div class="guarantee-seal w-24 h-24 rounded-full flex items-center justify-center mb-4">
+          <div class="text-center">
+            <div class="text-success font-display font-extrabold text-2xl leading-none">7</div>
+            <div class="text-success font-bold text-[10px] uppercase tracking-wider">DIAS</div>
+          </div>
+        </div>
+        <p class="font-display font-bold text-navy text-lg">Garantia incondicional</p>
+        <p class="text-slate-600 text-sm">Não gostou? Devolvemos 100% do seu dinheiro.</p>
+      </div>
+    </div>
+    
+    <p class="text-white/80 text-sm italic text-center mt-8 max-w-2xl mx-auto">
+      Vendedores que aplicam as ações recomendadas nos primeiros 7 dias relatam aumento de 30 a 50 por cento no faturamento em 30 dias. Resultados variam conforme volume de aplicação e nicho de atuação.
+    </p>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 16 — FAQ                                                -->
+<!-- ============================================================ -->
+<section class="bg-soft py-20 md:py-28">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="display text-navy text-3xl md:text-5xl font-extrabold">Perguntas <span class="text-orange">frequentes</span></h2>
+    </div>
+    
+    <div class="space-y-4">
+      <details class="bg-white rounded-2xl p-6 shadow-sm group">
+        <summary class="flex justify-between items-center font-display font-bold text-navy text-lg">
+          Como a planilha conecta na minha conta do ML?
+          <svg class="arrow w-5 h-5 text-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="mt-4 text-slate-600 leading-relaxed">Via API oficial do Mercado Livre, com autorização OAuth. Você nunca compartilha senha. A conexão é segura, criptografada e pode ser revogada a qualquer momento direto do painel do ML.</p>
+      </details>
+      <details class="bg-white rounded-2xl p-6 shadow-sm group">
+        <summary class="flex justify-between items-center font-display font-bold text-navy text-lg">
+          Funciona pra qualquer nicho?
+          <svg class="arrow w-5 h-5 text-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="mt-4 text-slate-600 leading-relaxed">Sim. Funciona com qualquer categoria do ML — autopeças, moda, eletrônicos, beleza, casa, esporte. As 11 exigências analisadas são as mesmas pra todas as categorias.</p>
+      </details>
+      <details class="bg-white rounded-2xl p-6 shadow-sm group">
+        <summary class="flex justify-between items-center font-display font-bold text-navy text-lg">
+          Preciso ter conhecimento técnico?
+          <svg class="arrow w-5 h-5 text-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="mt-4 text-slate-600 leading-relaxed">Não. Você recebe um tutorial em vídeo passo a passo. Se você sabe entrar no painel do ML, sabe usar o Raio-X.</p>
+      </details>
+      <details class="bg-white rounded-2xl p-6 shadow-sm group">
+        <summary class="flex justify-between items-center font-display font-bold text-navy text-lg">
+          E se eu não tiver o resultado prometido?
+          <svg class="arrow w-5 h-5 text-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="mt-4 text-slate-600 leading-relaxed">Garantia incondicional de 7 dias. Se em 7 dias você não enxergar valor, devolvemos 100% sem perguntas.</p>
+      </details>
+      <details class="bg-white rounded-2xl p-6 shadow-sm group">
+        <summary class="flex justify-between items-center font-display font-bold text-navy text-lg">
+          Quanto tempo leva pra rodar a análise?
+          <svg class="arrow w-5 h-5 text-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="mt-4 text-slate-600 leading-relaxed">Entre 2 e 5 minutos, dependendo do volume de anúncios da sua conta.</p>
+      </details>
+      <details class="bg-white rounded-2xl p-6 shadow-sm group">
+        <summary class="flex justify-between items-center font-display font-bold text-navy text-lg">
+          Posso usar em mais de uma conta?
+          <svg class="arrow w-5 h-5 text-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="mt-4 text-slate-600 leading-relaxed">Cada compra dá direito a usar em uma conta. Se tiver mais contas, fala com a gente que tem condição especial pra múltiplas contas.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SEÇÃO 17 — FOOTER                                             -->
+<!-- ============================================================ -->
+<footer class="bg-navy-darker py-12 border-t border-white/5">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-orange rounded-lg flex items-center justify-center">
+          <span class="text-white font-extrabold">RX</span>
+        </div>
+        <span class="text-white font-display font-extrabold text-xl">Raio-X <span class="text-orange">ML</span></span>
+      </div>
+      <p class="text-slate-400 text-sm">
+        Tem dúvidas? Entre em contato:
+        <a href="mailto:contato@360gestaoindaut.com" class="text-orange-light hover:text-orange transition">contato@360gestaoindaut.com</a>
+      </p>
+    </div>
+    
+    <div class="border-t border-white/10 pt-8">
+      <p class="text-slate-500 text-xs leading-relaxed text-center max-w-3xl mx-auto">
+        Este site não é afiliado ao Mercado Livre, Meta, Google ou qualquer entidade dessas plataformas. Resultados podem variar de acordo com a aplicação das recomendações pelo usuário. Não garantimos resultados específicos.
+      </p>
+      <p class="text-slate-500 text-xs text-center mt-4">
+        360 Gestão · CNPJ: a inserir · © 2026 Todos os Direitos Reservados.
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ============================================================ -->
+<!-- ANIMAÇÕES                                                     -->
+<!-- ============================================================ -->
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  
+  document.querySelectorAll('section > div').forEach(el => {
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
