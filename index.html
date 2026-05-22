@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raio-X ML | Descubra em 5 minutos quais dos seus anúncios estão travando seu faturamento</title>
+<title>Raio-X ML | Descubra em 5 minutes quais dos seus anúncios estão travando seu faturamento</title>
 <meta name="description" content="A planilha com IA que conecta na sua conta do Mercado Livre, analisa todos os anúncios e mostra exatamente o que arrumar pra vender mais. R$97 à vista ou 12x R$9,90.">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -222,14 +222,26 @@
     border: 3px solid #27AE60;
     box-shadow: 0 8px 20px -5px rgba(39, 174, 96, 0.3);
   }
+
+  /* Animação Pulsação Sutil para Elementos Vivos */
+  .btn-vivo-lento {
+    animation: pulsa-suave 3s infinite ease-in-out;
+  }
+  @keyframes pulsa-suave {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 4px 14px 0 rgba(240, 128, 32, 0.4);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.02);
+      box-shadow: 0 6px 22px 4px rgba(240, 128, 32, 0.6);
+      opacity: 0.92;
+    }
+  }
 </style>
 </head>
 <body class="bg-white text-slate-800 antialiased">
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 1 — HERO                                                -->
-<!-- ============================================================ -->
-
 
 <div class="h-1.5 w-full bg-gradient-to-r from-orange-400 via-orange-500 to-navy-light"></div>
 
@@ -268,16 +280,13 @@
             <span class="text-slate-500 font-medium text-[13px]">Saiba o que corrigir primeiro</span>
         </div>
     </div>
-
-<div class="w-full max-w-[540px] flex flex-col items-center relative mt-2 px-4">
+    
+    <div class="w-full max-w-[540px] flex flex-col items-center relative mt-2 px-4">
       <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[280px] h-[180px] md:w-[450px] md:h-[250px] bg-gradient-to-t from-orange-200 to-transparent rounded-full opacity-60 -z-10"></div>
       
-<div class="relative z-10 w-full bg-slate-950 rounded-t-xl border-[7px] border-slate-900 shadow-2xl overflow-hidden aspect-[16/10]">
+      <div class="relative z-10 w-full bg-slate-950 rounded-t-xl border-[7px] border-slate-900 shadow-2xl overflow-hidden aspect-[16/10]">
          <img src="versao-final-planilha.png" alt="Print da Planilha Raio-X ML" class="w-full h-full object-cover block">
       </div>
-      
-      <div class="relative z-20 w-[112%] h-2.5 bg-slate-800 rounded-b-lg shadow-xl border-t border-slate-700"></div>
-      <div class="relative z-30 w-16 h-1 bg-slate-900 rounded-b-md -mt-2.5"></div>
       
       <div class="relative z-20 w-[112%] h-2.5 bg-slate-800 rounded-b-lg shadow-xl border-t border-slate-700"></div>
       <div class="relative z-30 w-16 h-1 bg-slate-900 rounded-b-md -mt-2.5"></div>
@@ -286,9 +295,6 @@
   </div>
 </section>
 
-<!-- ============================================================ -->
-<!-- SEÇÃO 2 — PROVA DE PRODUTO                                    -->
-<!-- ============================================================ -->
 <section class="bg-white py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-14">
@@ -304,7 +310,7 @@
       <div class="card-3d">
         <div class="placeholder aspect-[4/3] mb-4">IMAGEM: Print da planilha — visão geral com SCORE de cada anúncio</div>
         <h3 class="display font-bold text-navy text-lg">Visão geral com SCORE de cada anúncio</h3>
-        <p class="text-slate-600 mt-2">Todos seus anúncios listados, ordenados pelo pior pro melhor. Você vê na hora onde tá o problema.</p>
+        <p class="text-slate-600 mt-2">Todos seus anúncios listados, ordenados pelo pior pro melhor. Você vê na hora onde tá o problem.</p>
       </div>
       <div class="card-3d">
         <div class="placeholder aspect-[4/3] mb-4">IMAGEM: Print zoom em 1 anúncio — 11 exigências (algumas vermelhas, outras verdes) + AÇÃO RECOMENDADA</div>
@@ -320,10 +326,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 3 — AUTORIDADE                                          -->
-<!-- ============================================================ -->
 <section class="bg-navy-gradient-2 py-16 md:py-20 relative overflow-hidden">
   <div class="glow-circle bg-orange/10" style="width: 400px; height: 400px; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
   
@@ -340,15 +342,12 @@
       Construído com base em mais de 10 anos auditando contas reais de Mercado Livre, Amazon e Shopee.
     </p>
     
-    <a href="#cta" class="inline-block bg-orange hover:bg-orange-dark text-white font-display font-bold text-sm md:text-base px-12 py-4 rounded-xl shadow-lg hover:shadow-orange/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center w-full sm:w-auto uppercase tracking-wide">
+    <a href="#cta" class="btn-vivo-lento inline-block bg-orange hover:bg-orange-dark text-white font-display font-bold text-sm md:text-base px-12 py-4 rounded-xl shadow-lg hover:shadow-orange/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center w-full sm:w-auto uppercase tracking-wide">
       Comprar Agora
     </a>
   </div>
 </section>
 
-<!-- ============================================================ -->
-<!-- SEÇÃO 4 — IDENTIFICAÇÃO DA DOR                                -->
-<!-- ============================================================ -->
 <section class="bg-white py-20 md:py-28">
   <div class="max-w-5xl mx-auto px-6">
     <p class="text-orange font-bold uppercase tracking-widest text-sm mb-3">Eu sei…</p>
@@ -363,7 +362,6 @@
       <p>E aí, toda vez que você pensa em melhorar o faturamento, sua cabeça vai pro lugar errado:</p>
     </div>
     
-    <!-- Balões de pensamento -->
     <div class="grid md:grid-cols-2 gap-6 md:gap-8 mt-16">
       <div class="thought-bubble">
         <p class="text-navy font-display font-bold text-lg md:text-xl">"Preciso cadastrar mais produtos…"</p>
@@ -381,10 +379,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 5 — DIAGNÓSTICO                                         -->
-<!-- ============================================================ -->
 <section class="bg-soft py-20 md:py-28 relative overflow-hidden">
   <div class="max-w-5xl mx-auto px-6">
     <h2 class="display text-3xl md:text-5xl font-extrabold leading-tight mb-10 max-w-4xl">
@@ -400,10 +394,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 6 — APRESENTAÇÃO DA SOLUÇÃO                             -->
-<!-- ============================================================ -->
 <section class="bg-white py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-14">
@@ -462,7 +452,6 @@
       </div>
     </div>
     
-    <!-- Imagens da solução -->
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
       <div class="placeholder aspect-square">IMG planilha 1</div>
       <div class="placeholder aspect-square">IMG planilha 2</div>
@@ -474,10 +463,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 7 — COMO FUNCIONA EM 4 PASSOS                           -->
-<!-- ============================================================ -->
 <section class="bg-soft py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-14">
@@ -518,10 +503,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 8 — O QUE ESTÁ INCLUSO                                  -->
-<!-- ============================================================ -->
 <section class="bg-white py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-14">
@@ -532,7 +513,6 @@
     </div>
     
     <div class="space-y-6 md:space-y-8">
-      <!-- Item 1 -->
       <div class="grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-soft rounded-3xl p-6 md:p-10">
         <div class="placeholder aspect-[4/3]">IMG: mockup da Planilha Raio-X ML</div>
         <div>
@@ -541,7 +521,6 @@
           <p class="text-slate-600 text-lg leading-relaxed">A planilha que conecta na sua conta do ML, puxa todos os seus anúncios e gera o diagnóstico completo de qualidade, exigências e performance.</p>
         </div>
       </div>
-      <!-- Item 2 -->
       <div class="grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-soft rounded-3xl p-6 md:p-10">
         <div class="md:order-2 placeholder aspect-[4/3]">IMG: símbolo de IA / coluna AÇÃO RECOMENDADA</div>
         <div class="md:order-1">
@@ -550,7 +529,6 @@
           <p class="text-slate-600 text-lg leading-relaxed">A IA por trás da coluna AÇÃO RECOMENDADA. Ela cruza todos os dados do seu anúncio com as melhores práticas do ML e te diz exatamente o que fazer primeiro em cada um.</p>
         </div>
       </div>
-      <!-- Item 3 -->
       <div class="grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-soft rounded-3xl p-6 md:p-10">
         <div class="placeholder aspect-[4/3]">IMG: mockup vídeo aula 1 — como conectar</div>
         <div>
@@ -559,23 +537,18 @@
           <p class="text-slate-600 text-lg leading-relaxed">Tutorial filmando a tela, mostrando exatamente onde clicar pra conectar sua conta do ML na planilha. Sem erro, mesmo se você nunca mexeu com isso.</p>
         </div>
       </div>
-      <!-- Item 4 -->
       <div class="grid md:grid-cols-2 gap-6 md:gap-10 items-center bg-soft rounded-3xl p-6 md:p-10">
         <div class="md:order-2 placeholder aspect-[4/3]">IMG: mockup vídeo aula 2 — como aplicar ações</div>
         <div class="md:order-1">
           <span class="inline-block bg-orange/10 text-orange font-bold text-xs uppercase tracking-wider px-3 py-1.5 rounded-full mb-3">Item 4</span>
           <h3 class="display font-extrabold text-navy text-2xl md:text-3xl mb-3">Tutorial de como aplicar as ações</h3>
-          <p class="text-slate-600 text-lg leading-relaxed">Não basta saber o que arrumar — você precisa saber COMO arrumar. Esse tutorial te mostra na prática como aplicar cada tipo de ação no painel do ML.</p>
+          <p class="text-slate-600 text-lg leading-relaxed">Não basta saber o que arrumar — você precisa saber COMO arrumar. Esse tutorial te mostra na prática como aplicar cada tipo de action no painel do ML.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 9 — BÔNUS                                               -->
-<!-- ============================================================ -->
 <section class="bg-navy-gradient-2 py-20 md:py-28 relative overflow-hidden">
   <div class="glow-circle bg-orange" style="width: 500px; height: 500px; top: -100px; right: -100px;"></div>
   <div class="glow-circle bg-orange-light" style="width: 400px; height: 400px; bottom: -100px; left: -100px;"></div>
@@ -611,10 +584,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 10 — PRA QUEM É                                         -->
-<!-- ============================================================ -->
 <section class="bg-white py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-14">
@@ -622,7 +591,6 @@
     </div>
     
     <div class="grid md:grid-cols-2 gap-6 md:gap-8">
-      <!-- É pra você -->
       <div class="bg-gradient-to-br from-emerald-50 to-white border-2 border-emerald-200 rounded-3xl p-8">
         <div class="flex items-center gap-3 mb-6">
           <div class="w-12 h-12 bg-success rounded-xl flex items-center justify-center">
@@ -640,7 +608,6 @@
         </ul>
       </div>
       
-      <!-- NÃO é pra você -->
       <div class="bg-gradient-to-br from-red-50 to-white border-2 border-red-200 rounded-3xl p-8">
         <div class="flex items-center gap-3 mb-6">
           <div class="w-12 h-12 bg-danger rounded-xl flex items-center justify-center">
@@ -658,10 +625,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 11 — RECAPITULANDO                                      -->
-<!-- ============================================================ -->
 <section class="bg-soft py-20 md:py-28">
   <div class="max-w-4xl mx-auto px-6">
     <div class="text-center mb-12">
@@ -709,10 +672,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 12 — OFERTA E PREÇO                                     -->
-<!-- ============================================================ -->
 <section id="cta" class="bg-orange-gradient py-20 md:py-28 relative overflow-hidden">
   <div class="glow-circle bg-white" style="width: 600px; height: 600px; top: -100px; left: 50%; transform: translateX(-50%); opacity: 0.15;"></div>
   
@@ -722,10 +681,8 @@
     </div>
     
     <div class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl text-center">
-      <!-- Mockup -->
       <div class="placeholder aspect-[4/3] max-w-sm mx-auto mb-6">IMG: mockup do produto (notebook + tablet com a planilha)</div>
       
-      <!-- Logo do produto -->
       <div class="inline-flex items-center gap-2 mb-6">
         <div class="w-8 h-8 bg-orange rounded-md flex items-center justify-center">
           <span class="text-white font-extrabold text-sm">RX</span>
@@ -743,7 +700,6 @@
         Quero comprar agora →
       </a>
       
-      <!-- Selo de garantia -->
       <div class="mt-10 flex flex-col items-center">
         <div class="guarantee-seal w-24 h-24 rounded-full flex items-center justify-center mb-4">
           <div class="text-center">
@@ -758,10 +714,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 13 — DUAS OPÇÕES                                        -->
-<!-- ============================================================ -->
 <section class="bg-white py-20 md:py-28">
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-14">
@@ -769,7 +721,6 @@
     </div>
     
     <div class="grid md:grid-cols-2 gap-6 md:gap-8">
-      <!-- Opção 1 -->
       <div class="bg-slate-100 rounded-3xl p-8 border-2 border-slate-200">
         <p class="text-slate-500 font-bold uppercase tracking-widest text-sm mb-2">Opção 1</p>
         <h3 class="display font-extrabold text-slate-700 text-2xl mb-6">Sem o Raio-X ML</h3>
@@ -779,7 +730,6 @@
           <li class="flex gap-3 text-slate-600"><span class="flex-shrink-0">👉</span><span>Continuar deixando dinheiro na mesa todo dia</span></li>
         </ul>
       </div>
-      <!-- Opção 2 -->
       <div class="bg-gradient-to-br from-orange-light/20 to-orange/10 rounded-3xl p-8 border-2 border-orange">
         <p class="text-orange font-bold uppercase tracking-widest text-sm mb-2">Opção 2</p>
         <h3 class="display font-extrabold text-navy text-2xl mb-6">Com o Raio-X ML</h3>
@@ -793,10 +743,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 14 — QUEM SOU EU                                        -->
-<!-- ============================================================ -->
 <section class="bg-navy-gradient py-20 md:py-28 relative overflow-hidden">
   <div class="glow-circle bg-orange" style="width: 500px; height: 500px; top: 10%; right: -100px;"></div>
   
@@ -822,10 +768,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 15 — CTA FINAL                                          -->
-<!-- ============================================================ -->
 <section class="bg-orange-gradient py-20 md:py-28 relative overflow-hidden">
   <div class="glow-circle bg-white" style="width: 600px; height: 600px; top: -100px; left: 50%; transform: translateX(-50%); opacity: 0.15;"></div>
   
@@ -866,10 +808,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 16 — FAQ                                                -->
-<!-- ============================================================ -->
 <section class="bg-soft py-20 md:py-28">
   <div class="max-w-3xl mx-auto px-6">
     <div class="text-center mb-12">
@@ -923,10 +861,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================ -->
-<!-- SEÇÃO 17 — FOOTER                                             -->
-<!-- ============================================================ -->
 <footer class="bg-navy-darker py-12 border-t border-white/5">
   <div class="max-w-6xl mx-auto px-6">
     <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
@@ -953,10 +887,6 @@
   </div>
 </footer>
 
-
-<!-- ============================================================ -->
-<!-- ANIMAÇÕES                                                     -->
-<!-- ============================================================ -->
 <script>
   // Reveal on scroll
   const observer = new IntersectionObserver((entries) => {
@@ -966,7 +896,6 @@
       }
     });
   }, { threshold: 0.1 });
-  
   document.querySelectorAll('section > div').forEach(el => {
     el.classList.add('reveal');
     observer.observe(el);
