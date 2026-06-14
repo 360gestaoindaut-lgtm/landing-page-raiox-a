@@ -12,10 +12,10 @@ Landing page de vendas do produto **Raio-X ML**: uma planilha com IA que conecta
 ## Estrutura do projeto
 
 ```
-index.html    — Toda a landing page (arquivo único, sem build)
-favicon.png   — Favicon e apple-touch-icon (180×180 px)
-plan_001.png  — Screenshot do produto usado no hero e na seção de pricing
-autor.jpg     — Foto do Gabriel (seção "Quem sou eu")
+index.html        — Toda a landing page (arquivo único, sem build)
+img/favicon.png   — Favicon e apple-touch-icon (180×180 px)
+img/plan_001.png  — Screenshot do produto usado no hero e na seção de pricing
+img/autor.jpg     — Foto do Gabriel (seção "Quem sou eu")
 ```
 
 Sem dependências de Node, build ou servidor. Abre direto no browser.
