@@ -6,16 +6,40 @@ Landing page de vendas do produto **Raio-X ML**: uma planilha com IA que conecta
 
 **Criador:** Gabriel — fundador da 360 Gestão (10 anos em e-commerce, clientes com +R$ 20M faturados em marketplaces).  
 **Preço:** R$ 97,00 à vista ou 12x de R$ 9,90.  
-**Plataforma de pagamento:** Kiwify.  
-**Contato:** contato@360gestaoindaut.com
+**Plataforma de pagamento:** Hotmart — https://pay.hotmart.com/A105863616F  
+**Contato:** contato@360gestaoindaut.com  
+**CNPJ:** 49.187.531/0001-24
 
 ## Estrutura do projeto
 
 ```
-index.html        — Toda a landing page (arquivo único, sem build)
-img/favicon.png   — Favicon e apple-touch-icon (180×180 px)
-img/plan_001.png  — Screenshot do produto usado no hero e na seção de pricing
-img/autor.jpg     — Foto do Gabriel (seção "Quem sou eu")
+index.html                          — Toda a landing page (arquivo único, sem build)
+.gitignore                          — Ignora desktop.ini e Thumbs.db
+img/favicon.png                     — Favicon e apple-touch-icon (180×180 px)
+img/plan_001.png                    — Screenshot do produto usado no hero e na seção de pricing
+img/autor.jpg                       — Foto do Gabriel (seção "Sobre o criador")
+
+img/demo-score-geral.png            — Seção demo: visão geral com SCORE de cada anúncio
+img/demo-11-exigencias-acao-recomendada.png — Seção demo: 11 exigências + ação recomendada por IA
+img/demo-performance-7d-15d-30d.png — Seção demo: performance cruzada em 4 janelas
+
+img/solucao-planilha-1.png          — Seção solução: grid de screenshots da planilha (1/6)
+img/solucao-planilha-2.png          — Seção solução: grid de screenshots da planilha (2/6)
+img/solucao-planilha-3.png          — Seção solução: grid de screenshots da planilha (3/6)
+img/solucao-planilha-4.png          — Seção solução: grid de screenshots da planilha (4/6)
+img/solucao-planilha-5.png          — Seção solução: grid de screenshots da planilha (5/6)
+img/solucao-planilha-6.png          — Seção solução: grid de screenshots da planilha (6/6)
+
+img/como-funciona-passo-1.png       — Seção como funciona: passo 1 (confirmação de compra)
+img/como-funciona-passo-2.png       — Seção como funciona: passo 2 (autorização OAuth ML)
+img/como-funciona-passo-3.png       — Seção como funciona: passo 3 (processamento da análise)
+img/como-funciona-passo-4.png       — Seção como funciona: passo 4 (planilha com relatório)
+
+img/bonus-prompt-capas-premium.jpg  — Seção bônus: capa do PDF Prompt Universal pra Capas Premium
+img/bonus-guia-11-exigencias.jpg    — Seção bônus: capa do PDF Guia das 11 Exigências do ML
+img/bonus-aula-5-erros-ranking.jpg  — Seção bônus: thumbnail da Aula Bônus 5 Erros no Ranking
+
+img/IMG símbolo de IA  coluna AÇÃO RECOMENDADA.png — Aguardando vínculo (seção o-que-voce-recebe)
 ```
 
 Sem dependências de Node, build ou servidor. Abre direto no browser.
@@ -69,29 +93,27 @@ Sem dependências de Node, build ou servidor. Abre direto no browser.
 
 1. **Barra topo** — gradiente laranja/navy (1px)
 2. **Hero** — logo, headline, badges de benefício, mockup de laptop com screenshot
-3. **Demo do produto** — 3 cards com placeholders de screenshot
-4. **Autoridade** — R$ 20M faturados + CTA
-5. **Problema (agitação)** — balões de pensamento com frases comuns do vendedor perdido
-6. **Problema (aprofundamento)** — "você tá olhando pro lado errado"
-7. **Solução** — o que é o Raio-X ML + grid de 4 entregáveis
-8. **Como funciona** — 4 passos numerados com placeholders
-9. **O que você recebe** — 4 itens principais (planilha, IA, tutoriais)
-10. **Bônus** — 3 bônus com ribbon, fundo navy escuro
-11. **Para quem é / não é** — grid verde vs vermelho
-12. **Recapitulação** — tabela com valores riscados + total
-13. **Pricing** — seção `id="pricing"`, preço, CTA principal, garantia 7 dias
-14. **Duas opções** — comparativo sem x com o produto
-15. **Sobre o criador** — foto do Gabriel + bio
-16. **CTA final**
-17. **FAQ** — 4 perguntas com `<details>` nativo
+3. **Demo do produto** (`id="demo"`) — 3 cards com screenshots reais (`demo-*.png`)
+4. **Autoridade** (`id="autoridade"`) — R$ 20M faturados + CTA
+5. **Problema (agitação)** (`id="problema"`) — balões de pensamento com frases comuns do vendedor perdido
+6. **Problema (aprofundamento)** (`id="aprofundamento"`) — "você tá olhando pro lado errado"
+7. **Solução** (`id="solucao"`) — o que é o Raio-X ML + grid 2×3 com 6 screenshots reais
+8. **Como funciona** (`id="como-funciona"`) — 4 cards com screenshots reais; estrutura especial: imagem em `<div class="overflow-hidden rounded-t-2xl">`, texto em `<div class="p-6 pt-4">`, sem `overflow-hidden` no card pai (preserva badge numérico absoluto)
+9. **O que você recebe** (`id="o-que-voce-recebe"`) — 4 itens principais (planilha, IA, tutoriais); ainda com placeholders pendentes
+10. **Bônus** (`id="bonus"`) — 3 bônus com ribbon, fundo navy escuro, imagens reais (`bonus-*.jpg`)
+11. **Para quem é / não é** (`id="para-quem"`) — grid verde vs vermelho
+12. **Recapitulação** (`id="recapitulacao"`) — tabela com valores riscados + total
+13. **Pricing** (`id="pricing"`) — preço, CTA principal apontando para Hotmart, garantia 7 dias
+14. **Duas opções** (`id="duas-opcoes"`) — comparativo sem x com o produto
+15. **Sobre o criador** (`id="sobre-o-criador"`) — foto do Gabriel + bio
+16. **CTA final** (`id="cta-final"`)
+17. **FAQ** (`id="faq"`) — 4 perguntas com `<details>` nativo
 18. **Footer** — logo, e-mail, disclaimer, CNPJ
 
 ## Pendências identificadas no código
 
-- **Placeholders de imagem**: todos os elementos `.placeholder` e `.placeholder-dark` nas seções de demo, passos, itens e bônus precisam ser substituídos por `<img>` reais.
-- **Link do CTA principal**: o `<a href="#">` no botão de compra precisa receber a URL da Kiwify.
-- **CNPJ**: no footer está `CNPJ: a inserir` — precisa ser preenchido.
-- **FAQ — typo**: a primeira pergunta contém o fragmento `"Isolate is safe?"` que é texto residual e deve ser removido. O texto correto da pergunta deve ser apenas `"Como a planilha conecta na minha conta do ML? É seguro?"`.
+- **Placeholders de imagem**: restam placeholders apenas na seção `o-que-voce-recebe` (4 itens: planilha, IA, tutorial conectar, tutorial aplicar). As seções demo, solucao, como-funciona e bonus já têm imagens reais.
+- **FAQ — typo**: verificar se a primeira pergunta ainda contém o fragmento `"Isolate is safe?"` — texto residual que deve ser removido. O texto correto é apenas `"Como a planilha conecta na minha conta do ML? É seguro?"`.
 
 ## Convenções de desenvolvimento
 
@@ -99,4 +121,5 @@ Sem dependências de Node, build ou servidor. Abre direto no browser.
 - O Tailwind é configurado inline no `<head>`; adicione novas cores/tokens lá se necessário.
 - Animações e estilos especiais ficam no bloco `<style>` interno.
 - Mantenha a estrutura de seções com `<section>` + `class="reveal"` para preservar o comportamento de scroll.
-- Para CTAs que apontam para a compra, use `href="#pricing"` (âncora interna) ou a URL da Kiwify quando disponível.
+- Para CTAs que apontam para a compra, use `href="https://pay.hotmart.com/A105863616F" target="_blank"` (Hotmart) ou `href="#pricing"` para âncora interna.
+- Cards com badge numérico absoluto (`absolute -top-4 -left-4`): nunca colocar `overflow-hidden` no card pai. Usar `<div class="overflow-hidden rounded-t-2xl">` apenas em volta da imagem.
