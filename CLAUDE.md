@@ -113,7 +113,6 @@ Sem dependências de Node, build ou servidor. Abre direto no browser.
 ## Pendências identificadas no código
 
 - **Placeholders de imagem**: restam placeholders apenas na seção `o-que-voce-recebe` (4 itens: planilha, IA, tutorial conectar, tutorial aplicar). As seções demo, solucao, como-funciona e bonus já têm imagens reais.
-- **FAQ — typo**: verificar se a primeira pergunta ainda contém o fragmento `"Isolate is safe?"` — texto residual que deve ser removido. O texto correto é apenas `"Como a planilha conecta na minha conta do ML? É seguro?"`.
 
 ## Convenções de desenvolvimento
 
