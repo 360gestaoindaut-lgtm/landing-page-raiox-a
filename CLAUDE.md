@@ -14,33 +14,30 @@ Landing page de vendas do produto **Raio-X ML**: uma planilha com IA que conecta
 
 ```
 index.html                          — Toda a landing page (arquivo único, sem build)
-.gitignore                          — Ignora desktop.ini e Thumbs.db
-img/favicon.png                     — Favicon e apple-touch-icon (180×180 px)
-img/plan_001.png                    — Screenshot do produto usado no hero e na seção de pricing
-img/autor.jpg                       — Foto do Gabriel (seção "Sobre o criador")
+.gitignore                          — Ignora desktop.ini e Thumbs.db (arquivos que o Windows Explorer recria sozinho)
+img/favicon.png                     — Favicon e apple-touch-icon (180×180 px); não segue a numeração pois não é conteúdo exibido na página
 
-img/demo-score-geral.png            — Seção demo: visão geral com SCORE de cada anúncio
-img/demo-11-exigencias-acao-recomendada.png — Seção demo: 11 exigências + ação recomendada por IA
-img/demo-performance-7d-15d-30d.png — Seção demo: performance cruzada em 4 janelas
-
-img/solucao-planilha-1.png          — Seção solução: grid de screenshots da planilha (1/6)
-img/solucao-planilha-2.png          — Seção solução: grid de screenshots da planilha (2/6)
-img/solucao-planilha-3.png          — Seção solução: grid de screenshots da planilha (3/6)
-img/solucao-planilha-4.png          — Seção solução: grid de screenshots da planilha (4/6)
-img/solucao-planilha-5.png          — Seção solução: grid de screenshots da planilha (5/6)
-img/solucao-planilha-6.png          — Seção solução: grid de screenshots da planilha (6/6)
-
-img/como-funciona-passo-1.png       — Seção como funciona: passo 1 (confirmação de compra)
-img/como-funciona-passo-2.png       — Seção como funciona: passo 2 (autorização OAuth ML)
-img/como-funciona-passo-3.png       — Seção como funciona: passo 3 (processamento da análise)
-img/como-funciona-passo-4.png       — Seção como funciona: passo 4 (planilha com relatório)
-
-img/bonus-prompt-capas-premium.jpg  — Seção bônus: capa do PDF Prompt Universal pra Capas Premium
-img/bonus-guia-11-exigencias.jpg    — Seção bônus: capa do PDF Guia das 11 Exigências do ML
-img/bonus-aula-5-erros-ranking.jpg  — Seção bônus: thumbnail da Aula Bônus 5 Erros no Ranking
-
-img/IMG símbolo de IA  coluna AÇÃO RECOMENDADA.png — Aguardando vínculo (seção o-que-voce-recebe)
+img/00 - hero pricing.png           — Screenshot do produto usado no hero e na seção de pricing
+img/01 - demo.png                   — Seção demo: visão geral com SCORE de cada anúncio
+img/02 - demo.png                   — Seção demo: 11 exigências + ação recomendada por IA
+img/03 - demo.png                   — Seção demo: performance cruzada em 4 janelas
+img/04 - solucao.png                — Seção solução: grid de screenshots da planilha (1/3)
+img/05 - solucao.png                — Seção solução: grid de screenshots da planilha (2/3)
+img/06 - solucao.png                — Seção solução: grid de screenshots da planilha (3/3)
+img/07 - como funciona.png          — Seção como funciona: passo 1 (confirmação de compra)
+img/08 - como funciona.png          — Seção como funciona: passo 2 (autorização OAuth ML)
+img/09 - como funciona.png          — Seção como funciona: passo 3 (processamento da análise)
+img/10 - como funciona.png          — Seção como funciona: passo 4 (planilha com relatório)
+img/11 - o que voce recebe.png      — Seção o-que-voce-recebe: item 1, mockup da planilha
+img/12 - o que voce recebe.png      — Seção o-que-voce-recebe: item 2, símbolo de IA / coluna AÇÃO RECOMENDADA
+img/13 - o que voce recebe.png      — Seção o-que-voce-recebe: item 4, tutorial de como aplicar as ações
+img/14 - bonus.jpg                  — Seção bônus: capa do PDF Prompt Universal pra Capas Premium
+img/15 - bonus.jpg                  — Seção bônus: capa do PDF Guia das 11 Exigências do ML
+img/16 - bonus.jpg                  — Seção bônus: thumbnail da Aula Bônus 5 Erros no Ranking
+img/17 - sobre o criador.jpg        — Foto do Gabriel (seção "Sobre o criador")
 ```
+
+Convenção de nome: `NN - nome da seção.ext`, numerado por ordem de exibição na página (topo → base). Quando a mesma imagem é usada em mais de uma seção (ex.: `00 - hero pricing.png`, usada no hero e no pricing), os nomes das seções aparecem juntos separados por espaço. Ao adicionar uma imagem nova, siga essa convenção e renumere a partir do ponto de inserção se necessário.
 
 Sem dependências de Node, build ou servidor. Abre direto no browser.
 
@@ -93,14 +90,14 @@ Sem dependências de Node, build ou servidor. Abre direto no browser.
 
 1. **Barra topo** — gradiente laranja/navy (1px)
 2. **Hero** — logo, headline, badges de benefício, mockup de laptop com screenshot
-3. **Demo do produto** (`id="demo"`) — 3 cards com screenshots reais (`demo-*.png`)
+3. **Demo do produto** (`id="demo"`) — 3 cards com screenshots reais (`01-03 - demo.png`)
 4. **Autoridade** (`id="autoridade"`) — R$ 20M faturados + CTA
 5. **Problema (agitação)** (`id="problema"`) — balões de pensamento com frases comuns do vendedor perdido
 6. **Problema (aprofundamento)** (`id="aprofundamento"`) — "você tá olhando pro lado errado"
-7. **Solução** (`id="solucao"`) — o que é o Raio-X ML + grid 2×3 com 6 screenshots reais
-8. **Como funciona** (`id="como-funciona"`) — 4 cards com screenshots reais; estrutura especial: imagem em `<div class="overflow-hidden rounded-t-2xl">`, texto em `<div class="p-6 pt-4">`, sem `overflow-hidden` no card pai (preserva badge numérico absoluto)
-9. **O que você recebe** (`id="o-que-voce-recebe"`) — 4 itens principais (planilha, IA, tutoriais); ainda com placeholders pendentes
-10. **Bônus** (`id="bonus"`) — 3 bônus com ribbon, fundo navy escuro, imagens reais (`bonus-*.jpg`)
+7. **Solução** (`id="solucao"`) — o que é o Raio-X ML + grid `grid-cols-2 md:grid-cols-3` com 3 screenshots reais (`04-06 - solucao.png`)
+8. **Como funciona** (`id="como-funciona"`) — 4 cards com screenshots reais (`07-10 - como funciona.png`); estrutura especial: imagem em `<div class="overflow-hidden rounded-t-2xl">`, texto em `<div class="p-6 pt-4">`, sem `overflow-hidden` no card pai (preserva badge numérico absoluto)
+9. **O que você recebe** (`id="o-que-voce-recebe"`) — 4 itens principais (planilha, IA, tutorial conectar, tutorial aplicar); itens 1, 2 e 4 já têm imagem real (`11-13 - o que voce recebe.png`), item 3 (tutorial de como conectar) ainda usa placeholder
+10. **Bônus** (`id="bonus"`) — 3 bônus com ribbon, fundo navy escuro, imagens reais (`14-16 - bonus.jpg`)
 11. **Para quem é / não é** (`id="para-quem"`) — grid verde vs vermelho
 12. **Recapitulação** (`id="recapitulacao"`) — tabela com valores riscados + total
 13. **Pricing** (`id="pricing"`) — preço, CTA principal apontando para Hotmart, garantia 7 dias
@@ -112,7 +109,7 @@ Sem dependências de Node, build ou servidor. Abre direto no browser.
 
 ## Pendências identificadas no código
 
-- **Placeholders de imagem**: restam placeholders apenas na seção `o-que-voce-recebe` (4 itens: planilha, IA, tutorial conectar, tutorial aplicar). As seções demo, solucao, como-funciona e bonus já têm imagens reais.
+- **Placeholder de imagem**: resta 1 placeholder na seção `o-que-voce-recebe`, item 3 ("Tutorial em vídeo de como conectar"). Os demais itens dessa seção e todas as outras seções (demo, solucao, como-funciona, bonus) já têm imagens reais.
 
 ## Convenções de desenvolvimento
 
