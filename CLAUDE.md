@@ -5,8 +5,8 @@
 Landing page de vendas do produto **Raio-X ML**: uma planilha com IA que conecta na conta do Mercado Livre via API oficial, analisa todos os anúncios do vendedor em 11 critérios e entrega um relatório de qualidade com ação recomendada por IA para cada anúncio.
 
 **Criador:** Gabriel — fundador da 360 Gestão (10 anos em e-commerce, clientes com +R$ 20M faturados em marketplaces).  
-**Preço:** R$ 97,00 à vista ou 12x de R$ 9,90.  
-**Plataforma de pagamento:** Hotmart — https://pay.hotmart.com/A105863616F  
+**Preço:** R$ 97,00 à vista ou 12x de R$ 10,03.  
+**Plataforma de pagamento:** Hotmart — https://pay.hotmart.com/A105863616F?off=y8gic4k9  
 **Contato:** contato@360gestaoindaut.com  
 **CNPJ:** 49.187.531/0001-24
 
@@ -117,5 +117,5 @@ Sem dependências de Node, build ou servidor. Abre direto no browser.
 - O Tailwind é configurado inline no `<head>`; adicione novas cores/tokens lá se necessário.
 - Animações e estilos especiais ficam no bloco `<style>` interno.
 - Mantenha a estrutura de seções com `<section>` + `class="reveal"` para preservar o comportamento de scroll.
-- Para CTAs que apontam para a compra, use `href="https://pay.hotmart.com/A105863616F" target="_blank"` (Hotmart) ou `href="#pricing"` para âncora interna.
+- Para CTAs que apontam para a compra, use `href="https://pay.hotmart.com/A105863616F?off=y8gic4k9" target="_blank"` (Hotmart) ou `href="#pricing"` para âncora interna.
 - Cards com badge numérico absoluto (`absolute -top-4 -left-4`): nunca colocar `overflow-hidden` no card pai. Usar `<div class="overflow-hidden rounded-t-2xl">` apenas em volta da imagem.
