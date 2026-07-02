@@ -30,11 +30,12 @@ img/09 - como funciona.png          — Seção como funciona: passo 3 (processa
 img/10 - como funciona.png          — Seção como funciona: passo 4 (planilha com relatório)
 img/11 - o que voce recebe.png      — Seção o-que-voce-recebe: item 1, mockup da planilha
 img/12 - o que voce recebe.png      — Seção o-que-voce-recebe: item 2, símbolo de IA / coluna AÇÃO RECOMENDADA
-img/13 - o que voce recebe.png      — Seção o-que-voce-recebe: item 4, tutorial de como aplicar as ações
-img/14 - bonus.jpg                  — Seção bônus: capa do PDF Prompt Universal pra Capas Premium
-img/15 - bonus.jpg                  — Seção bônus: capa do PDF Guia das 11 Exigências do ML
-img/16 - bonus.jpg                  — Seção bônus: thumbnail da Aula Bônus 5 Erros no Ranking
-img/17 - sobre o criador.jpg        — Foto do Gabriel (seção "Sobre o criador")
+img/13 - o que voce recebe.png      — Seção o-que-voce-recebe: item 3, tutorial de como conectar
+img/14 - o que voce recebe.png      — Seção o-que-voce-recebe: item 4, tutorial de como aplicar as ações
+img/15 - bonus.jpg                  — Seção bônus: capa do PDF Prompt Universal pra Capas Premium
+img/16 - bonus.jpg                  — Seção bônus: capa do PDF Guia das 11 Exigências do ML
+img/17 - bonus.jpg                  — Seção bônus: thumbnail da Aula Bônus 5 Erros no Ranking
+img/18 - sobre o criador.jpg        — Foto do Gabriel (seção "Sobre o criador")
 ```
 
 Convenção de nome: `NN - nome da seção.ext`, numerado por ordem de exibição na página (topo → base). Quando a mesma imagem é usada em mais de uma seção (ex.: `00 - hero pricing.png`, usada no hero e no pricing), os nomes das seções aparecem juntos separados por espaço. Ao adicionar uma imagem nova, siga essa convenção e renumere a partir do ponto de inserção se necessário.
@@ -96,8 +97,8 @@ Sem dependências de Node, build ou servidor. Abre direto no browser.
 6. **Problema (aprofundamento)** (`id="aprofundamento"`) — "você tá olhando pro lado errado"
 7. **Solução** (`id="solucao"`) — o que é o Raio-X ML + grid `grid-cols-2 md:grid-cols-3` com 3 screenshots reais (`04-06 - solucao.png`)
 8. **Como funciona** (`id="como-funciona"`) — 4 cards com screenshots reais (`07-10 - como funciona.png`); estrutura especial: imagem em `<div class="overflow-hidden rounded-t-2xl">`, texto em `<div class="p-6 pt-4">`, sem `overflow-hidden` no card pai (preserva badge numérico absoluto)
-9. **O que você recebe** (`id="o-que-voce-recebe"`) — 4 itens principais (planilha, IA, tutorial conectar, tutorial aplicar); itens 1, 2 e 4 já têm imagem real (`11-13 - o que voce recebe.png`), item 3 (tutorial de como conectar) ainda usa placeholder
-10. **Bônus** (`id="bonus"`) — 3 bônus com ribbon, fundo navy escuro, imagens reais (`14-16 - bonus.jpg`)
+9. **O que você recebe** (`id="o-que-voce-recebe"`) — 4 itens principais (planilha, IA, tutorial conectar, tutorial aplicar); todos os 4 itens já têm imagem real (`11-14 - o que voce recebe.png`)
+10. **Bônus** (`id="bonus"`) — 3 bônus com ribbon, fundo navy escuro, imagens reais (`15-17 - bonus.jpg`)
 11. **Para quem é / não é** (`id="para-quem"`) — grid verde vs vermelho
 12. **Recapitulação** (`id="recapitulacao"`) — tabela com valores riscados + total
 13. **Pricing** (`id="pricing"`) — preço, CTA principal apontando para Hotmart, garantia 7 dias
@@ -106,10 +107,6 @@ Sem dependências de Node, build ou servidor. Abre direto no browser.
 16. **CTA final** (`id="cta-final"`)
 17. **FAQ** (`id="faq"`) — 4 perguntas com `<details>` nativo
 18. **Footer** — logo, e-mail, disclaimer, CNPJ
-
-## Pendências identificadas no código
-
-- **Placeholder de imagem**: resta 1 placeholder na seção `o-que-voce-recebe`, item 3 ("Tutorial em vídeo de como conectar"). Os demais itens dessa seção e todas as outras seções (demo, solucao, como-funciona, bonus) já têm imagens reais.
 
 ## Convenções de desenvolvimento
 
