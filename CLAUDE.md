@@ -90,7 +90,7 @@ Sem dependências de Node, build ou servidor. Abre direto no browser.
 ## Seções da página (ordem)
 
 1. **Barra topo** — gradiente laranja/navy (1px)
-2. **Hero** — logo, headline, badges de benefício, mockup de laptop com screenshot
+2. **Hero** — logo, headline, badges de benefício, screenshot do produto (sem moldura de notebook em CSS — a própria imagem já traz a ilustração do notebook)
 3. **Demo do produto** (`id="demo"`) — 3 cards com screenshots reais (`01-03 - demo.png`)
 4. **Autoridade** (`id="autoridade"`) — R$ 20M faturados + CTA
 5. **Problema (agitação)** (`id="problema"`) — balões de pensamento com frases comuns do vendedor perdido
