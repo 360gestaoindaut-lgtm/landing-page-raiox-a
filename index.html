@@ -6,36 +6,9 @@
 <title>Raio-X ML | Descubra em 5 minutos quais dos seus anúncios estão travando seu faturamento</title>
 <meta name="description" content="A planilha com IA que conecta na sua conta do Mercado Livre, analisa todos os anúncios e mostra exatamente o que arrumar pra vender mais. R$97 à vista ou 12x R$10,03.">
 <link rel="canonical" href="https://360ecomm.com.br/raiox-ml/">
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/fonts.css?v=5586aa1b">
 <link rel="apple-touch-icon" sizes="180x180" href="img/favicon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          'navy': '#0A1838',
-          'navy-light': '#1A2950',
-          'navy-darker': '#06122B',
-          'orange': '#F08020',
-          'orange-light': '#FFA85C',
-          'orange-dark': '#D9651A',
-          'cream': '#FFF7EE',
-          'success': '#27AE60',
-          'danger': '#E74C3C',
-          'soft': '#F5F7FA',
-        },
-        fontFamily: {
-          'display': ['Plus Jakarta Sans', 'sans-serif'],
-          'body': ['Manrope', 'sans-serif'],
-        }
-      }
-    }
-  }
-</script>
 <style>
   body { font-family: 'Manrope', sans-serif; }
   h1, h2, h3, h4, .display { font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -261,6 +234,9 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1602056354678040&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<!-- Tailwind compilado (npm run build:css). Fica por ÚLTIMO no head de propósito: o Play CDN injetava o CSS
+     depois do <style> acima, e essa ordem define quem vence (ex.: text-slate-900 sobre .price-strike). -->
+<link rel="stylesheet" href="css/tailwind.css?v=b5db8558">
 </head>
 <body class="bg-white text-slate-800 antialiased">
 

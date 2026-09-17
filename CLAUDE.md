@@ -13,8 +13,14 @@ Landing page de vendas do produto **Raio-X ML**: uma planilha com IA que conecta
 ## Estrutura do projeto
 
 ```
-index.html                          — Toda a landing page (arquivo único, sem build)
-.gitignore                          — Ignora desktop.ini e Thumbs.db (arquivos que o Windows Explorer recria sozinho)
+index.html                          — Toda a landing page (HTML + <style> custom + JS do reveal)
+css/tailwind.css                    — Tailwind COMPILADO e minificado (gerado por `npm run build:css`, não editar à mão)
+css/fonts.css + css/fonts/*.woff2   — Plus Jakarta Sans e Manrope self-hosted (latin + latin-ext), baixadas do Google Fonts em 2026-09-17
+tailwind.config.js                  — Config do Tailwind (cores e fontes customizadas); era inline no <head> quando usava o Play CDN
+src/tailwind.css                    — Entrada do build (@tailwind base/components/utilities)
+tools/build-css.mjs                 — Roda o Tailwind CLI e grava ?v=<hash> nos <link> de css/ no index.html (cache-busting)
+package.json                        — Só devDependency tailwindcss@3; script `build:css`
+.gitignore                          — Ignora desktop.ini, Thumbs.db e node_modules/
 img/favicon.png                     — Favicon e apple-touch-icon (180×180 px); não segue a numeração pois não é conteúdo exibido na página
 
 img/00 - hero pricing.png           — Screenshot do produto usado no hero e na seção de pricing
@@ -40,13 +46,13 @@ img/18 - sobre o criador.jpg        — Foto do Gabriel (seção "Sobre o criado
 
 Convenção de nome: `NN - nome da seção.ext`, numerado por ordem de exibição na página (topo → base). Quando a mesma imagem é usada em mais de uma seção (ex.: `00 - hero pricing.png`, usada no hero e no pricing), os nomes das seções aparecem juntos separados por espaço. Ao adicionar uma imagem nova, siga essa convenção e renumere a partir do ponto de inserção se necessário.
 
-Sem dependências de Node, build ou servidor. Abre direto no browser.
+Abre direto no browser (file://) já estilizada. Node só é necessário pra **regenerar o CSS** quando alguma classe Tailwind nova entra no `index.html`: `npm install` (uma vez) e `npm run build:css`. Sem servidor, sem CDN, sem JS necessário pro estilo.
 
 ## Stack técnica
 
-- **HTML puro** — arquivo único `index.html`
-- **Tailwind CSS via CDN** — configurado inline no `<script>` do `<head>`
-- **Google Fonts** — Plus Jakarta Sans (headings/display) + Manrope (body)
+- **HTML puro** — `index.html`
+- **Tailwind CSS v3 compilado** (`css/tailwind.css`, via Tailwind CLI e `tailwind.config.js`) — migrado do Play CDN em 2026-09-17 pra zerar dependência de CDN/JS pro estilo. O `<link>` dele fica **por último no `<head>`**, depois do `<style>` custom, porque o Play CDN injetava o CSS nessa posição e a ordem define quem vence na cascata (ex.: `text-slate-900` sobre `.price-strike`, `shadow-xl` sobre o glow do `.btn-cta`). Mover o link pra cima muda o visual.
+- **Fontes self-hosted** — Plus Jakarta Sans (headings/display) + Manrope (body) em `css/fonts/`, declaradas em `css/fonts.css` com os mesmos blocos `@font-face` que o Google Fonts servia
 - **JavaScript vanilla** — apenas o IntersectionObserver para animação `.reveal` on scroll
 
 ### Paleta de cores (Tailwind customizado)
@@ -110,8 +116,9 @@ Sem dependências de Node, build ou servidor. Abre direto no browser.
 
 ## Convenções de desenvolvimento
 
-- Edite apenas `index.html` — não há arquivos separados de CSS ou JS.
-- O Tailwind é configurado inline no `<head>`; adicione novas cores/tokens lá se necessário.
+- O conteúdo e o CSS custom vivem em `index.html`; `css/tailwind.css` é gerado (não editar à mão).
+- Cores/tokens novos do Tailwind vão em `tailwind.config.js`. **Sempre que adicionar ou trocar uma classe Tailwind no `index.html`, rode `npm run build:css` e commite `css/tailwind.css` junto** — sem isso a classe nova não tem CSS em produção. O script também atualiza o `?v=` dos links (cache de 30 dias no Nginx).
+- Não reintroduzir `cdn.tailwindcss.com`, `fonts.googleapis.com` ou qualquer CSS/fonte via CDN: a página precisa ficar estilizada sem JS e sem serviço externo (decisão da migração pra VPS-B). Único externo aceito é o Meta Pixel.
 - Animações e estilos especiais ficam no bloco `<style>` interno.
 - Mantenha a estrutura de seções com `<section>` + `class="reveal"` para preservar o comportamento de scroll.
 - Para CTAs que apontam para a compra, use `href="https://pay.hotmart.com/A105863616F?off=y8gic4k9" target="_blank"` (Hotmart) ou `href="#pricing"` para âncora interna.

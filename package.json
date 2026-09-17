@@ -1,0 +1,11 @@
+{
+  "name": "landing-raiox-ml",
+  "private": true,
+  "description": "Landing page Raio-X ML — Tailwind compilado para CSS estático (sem CDN)",
+  "scripts": {
+    "build:css": "node tools/build-css.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
