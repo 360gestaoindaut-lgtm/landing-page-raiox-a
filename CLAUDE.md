@@ -7,7 +7,7 @@ Landing page de vendas do produto **Raio-X ML**: uma planilha com IA que conecta
 **Criador:** Gabriel — fundador da 360 Gestão (10 anos em e-commerce, clientes com +R$ 20M faturados em marketplaces).  
 **Preço:** R$ 97,00 à vista ou 12x de R$ 10,03.  
 **Plataforma de pagamento:** Hotmart — https://pay.hotmart.com/A105863616F?off=y8gic4k9  
-**Contato:** contato@360gestaoindaut.com  
+**Contato:** contato@360ecomm.com.br  
 **CNPJ:** 49.187.531/0001-24
 
 ## Estrutura do projeto
